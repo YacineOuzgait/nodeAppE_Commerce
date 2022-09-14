@@ -1,8 +1,18 @@
-// require("./api/helpers/string.helper");
-
 const express = require("express");
 
 const app = express();
+
+app.use(express.json());
+
+const routers = require('./api/routers');
+
+for(const route in routers){
+    app.use(`/${route}`, new routers[route]().router);
+}
+
+app.use('/', function(req, res){
+    res.send("ok");
+});
 
 // const cors = require("cors");
 // app.use(
@@ -10,13 +20,6 @@ const app = express();
 //     origin: ["http://localhost:3000"],
 //   })
 // );
-
-app.use(express.json());
-
-const routers = require("./api/routers");
-for (const route in routers) {
-  app.use(`/${route}`, new routers[route]().router);
-}
 
 const PORT = 5000;
 app.listen(PORT, () => {
