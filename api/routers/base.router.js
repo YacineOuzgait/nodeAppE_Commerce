@@ -13,12 +13,12 @@ class BaseRouter {
   }
 
   initializeRoutes = () => {
-    //get all db contact table rows
+    //get all db commande table rows
     this.router.get("/", async (req, res) => {
         const response = await this.controller.getAll();
         res.send(response);
     });
-    //get one db contact table row
+    //get one db commande table row
     this.router.get("/:id", async (req, res) => {
         const response = await this.controller.getOne(req.params.id);
       res.send(response);
@@ -28,12 +28,12 @@ class BaseRouter {
       const response =  await this.controller.getAll(req.body);
       res.send(response);
     });
-    //post to create one row in db table contact
+    //post to create one row in db table commande
     this.router.put("/", async (req, res) => {
         const response =  await this.controller.createOne(req.body);
       res.send(response);
     });
-    //put to update one row in db table contact
+    //put to update one row in db table commande
     this.router.put("/:id", async (req, res) => {
         const params = {...req.body, where:`id=${req.params.id}`};
         const response = await this.controller.updateWhere(params);
@@ -50,7 +50,7 @@ class BaseRouter {
       const response = await this.controller.updateWhere(params);
       res.send(response);
     });
-    //delete to destroy one row in db table contact
+    //delete to destroy one row in db table commande
     this.router.delete("/:id", async (req, res) => {
         const response = await this.controller.deleteOne(req.params.id);
       res.send(response);

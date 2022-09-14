@@ -4,7 +4,7 @@ const config = require("../configs/development/db.config");
 class BaseService {
     constructor() {
         this.name = this.constructor.name.replace(`Service`, ``);
-        this.table = this.name.unCamelize();
+        this.table = this.name.toLowerCase();
     }
 
     static db;
